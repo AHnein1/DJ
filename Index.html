@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Antho — Official Artist Platform</title>
+    <!-- SEO & Social Meta -->
+    <meta name="description" content="Official music platform for DJ Antho. Listen to latest releases, explore tour dates, photos, and exclusive electronic music tracks.">
+    <meta property="og:title" content="DJ Antho — Sound beyond the ordinary">
+    <meta property="og:description" content="Stream electronic music, view tour dates, releases, and exclusive content from DJ Antho.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts & Tailwind CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            500: '#ff5500',
+                            600: '#ea4a00',
+                            700: '#c23900',
+                            glow: 'rgba(255, 85, 0, 0.35)'
+                        },
+                        dark: {
+                            base: '#09090b',
+                            surface: '#121215',
+                            card: '#18181b',
+                            border: '#27272a',
+                            hover: '#2d2d32'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff5500; }
+
+        .glow-accent {
+            box-shadow: 0 0 25px rgba(255, 85, 0, 0.25);
+        }
+        .glow-text {
+            text-shadow: 0 0 12px rgba(255, 85, 0, 0.4);
+        }
+        .glass-panel {
+            background: rgba(18, 18, 21, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Animation utilities */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.05); }
+        }
+        .animate-pulse-slow { animation: pulse-slow 8s infinite ease-in-out; }
+    </style>
+</head>
+<body class="bg-dark-base text-gray-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+    <!-- Sticky Top Navigation -->
+    <header class="sticky top-0 z-40 w-full glass-panel transition-all duration-300 border-b border-dark-border" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#home" onclick="app.navigateTo('home')" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg bg-brand-500 flex items-center justify-center font-display font-black text-xl text-black tracking-tighter group-hover:bg-white transition-colors shadow-lg">
+                    DA
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-bold text-lg tracking-wider text-white group-hover:text-brand-500 transition-colors uppercase">DJ ANTHO</span>
+                    <span class="text-[10px] text-gray-400 tracking-widest uppercase -mt-1 hidden sm:block">Official Platform</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium">
+                <button onclick="app.navigateTo('home')" class="nav-link px-3 py-2 rounded-md hover:text-brand-500 hover:bg-dark-hover transition-all" data-target="home">Home</button>
+                <button onclick="app.navigateTo('music')" class="nav-link px-3 py-2 rounded-md hover:text-brand-500 hover:bg-dark-hover transition-all" data-target="music">Music</button>
+                <button onclick="app.navigateTo('releases')" class="nav-link px-3 py-2 rounded-md hover:text-brand-500 hover:bg-dark-hover transition-all" data-target="releases">Releases</button>
+                <button onclick="app.navigateTo('about')" class="nav-link px-3 py-2 rounded-md hover:text-brand-500 hover:bg-dark-hover transition-all" data-target="about">About</button>
+                <button onclick="app.navigateTo('photos')" class="nav-link px-3 py-2 rounded-md hover:text-brand-500 hover:bg-dark-hover transition-all" data-target="photos">Photos</button>
+                <button onclick="app.navigateTo('events')" class="nav-link px-3 py-2 rounded-md hover:text-brand-500 hover:bg-dark-hover transition-all" data-target="events">Events</button>
+            </nav>
+
+            <!-- Nav Action Buttons -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Search Button (Cmd + K) -->
+                <button onclick="app.toggleCmdPalette()" class="p-2 text-gray-400 hover:text-white rounded-lg hover:bg-dark-card border border-transparent hover:border-dark-border transition-all flex items-center gap-2" title="Search (Cmd+K)">
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                    <span class="text-xs bg-dark-card border border-dark-border px-1.5 py-0.5 rounded text-gray-400 font-mono hidden lg:inline">⌘K</span>
+                </button>
+
+                <!-- Favorites Drawer Toggle -->
+                <button onclick="app.toggleFavoritesDrawer()" class="p-2 text-gray-400 hover:text-brand-500 rounded-lg hover:bg-dark-card border border-transparent hover:border-dark-border transition-all relative" title="Favorites">
+                    <i class="fa-solid fa-heart"></i>
+                    <span id="favCountBadge" class="absolute -top-1 -right-1 bg-brand-500 text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+
+                <!-- Admin Auth Entry Button -->
+                <button id="adminNavBtn" onclick="app.handleAdminClick()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-dark-card border border-dark-border hover:border-brand-500 text-gray-300 hover:text-white transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-brand-500"></i>
+                    <span id="adminNavText" class="hidden sm:inline">Admin</span>
+                </button>
+
+                <!-- Theme Toggle -->
+                <button onclick="app.toggleTheme()" class="p-2 text-gray-400 hover:text-yellow-400 rounded-lg hover:bg-dark-card transition-all" title="Toggle Theme">
+                    <i class="fa-solid fa-sun" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main id="appViewContainer" class="flex-grow">
+
+        <!-- PUBLIC VIEW: HOME SECTION -->
+        <section id="view-home" class="page-view relative overflow-hidden">
+            <!-- Hero Banner -->
+            <div class="relative min-h-[85vh] flex items-center justify-center px-4 py-20 bg-gradient-to-b from-dark-surface via-dark-base to-dark-base border-b border-dark-border">
+                <!-- Visualizer Ambient Dynamic Canvas Backdrop -->
+                <canvas id="heroVisualizerCanvas" class="absolute inset-0 w-full h-full opacity-25 pointer-events-none"></canvas>
+
+                <!-- Glowing Ambient Lights -->
+                <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse-slow"></div>
+
+                <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-dark-card border border-dark-border text-brand-500 text-xs font-medium mb-6">
+                        <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+                        <span id="heroSubtitle">New Single "Midnight Frequency" Out Now</span>
+                    </div>
+
+                    <h1 class="text-5xl sm:text-7xl lg:text-9xl font-display font-black tracking-tight text-white mb-4 uppercase">
+                        DJ ANTHO
+                    </h1>
+
+                    <p class="text-xl sm:text-2xl text-gray-400 font-light max-w-2xl mb-8 tracking-wide font-display" id="heroTagline">
+                        "Sound beyond the ordinary."
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+                        <button onclick="app.playLatestTrack()" class="px-8 py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-black font-bold text-base shadow-lg shadow-brand-500/20 hover:scale-105 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-play text-lg"></i>
+                            Play Latest Release
+                        </button>
+                        <button onclick="app.navigateTo('music')" class="px-8 py-4 rounded-xl bg-dark-card hover:bg-dark-hover text-white font-semibold border border-dark-border hover:border-gray-500 transition-all flex items-center gap-3">
+                            Explore Music Library
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Social Icons Pill -->
+                    <div class="flex items-center gap-6 text-gray-400 text-lg" id="heroSocials">
+                        <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-spotify"></i></a>
+                        <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-soundcloud"></i></a>
+                        <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FEATURED TRACK SECTION -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-display font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-fire text-brand-500"></i> Featured Track
+                    </h2>
+                    <span class="text-xs uppercase tracking-widest text-gray-500">Editor's Pick</span>
+                </div>
+
+                <div id="featuredTrackContainer" class="glass-panel rounded-2xl p-6 sm:p-8 grid md:grid-cols-12 gap-8 items-center border border-dark-border">
+                    <!-- Loaded dynamically via JavaScript -->
+                </div>
+            </div>
+
+            <!-- LATEST RELEASES GRID PREVIEW -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-display font-bold text-white">Latest Releases</h2>
+                    <button onclick="app.navigateTo('releases')" class="text-sm font-semibold text-brand-500 hover:text-white transition-colors flex items-center gap-1">
+                        View All Releases <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+                <div id="homeReleasesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PUBLIC VIEW: MUSIC LIBRARY SECTION -->
+        <section id="view-music" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="mb-10">
+                <h1 class="text-4xl font-display font-black text-white mb-2">MUSIC LIBRARY</h1>
+                <p class="text-gray-400">Stream tracks, filter by genre, and save your favorites.</p>
+            </div>
+
+            <!-- Search, Filters & Sorting Controls -->
+            <div class="glass-panel p-4 rounded-xl mb-8 flex flex-col lg:flex-row gap-4 justify-between items-center">
+                <!-- Live Search Box -->
+                <div class="relative w-full lg:w-96">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                    <input type="text" id="musicSearchInput" oninput="app.handleMusicSearch(this.value)" placeholder="Search songs, genres, albums..." class="w-full bg-dark-card border border-dark-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-colors">
+                </div>
+
+                <!-- Type Filters -->
+                <div class="flex items-center gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 hide-scrollbar" id="musicFilterGroup">
+                    <button onclick="app.filterMusic('All')" class="filter-btn active px-4 py-2 rounded-lg text-xs font-semibold bg-brand-500 text-black whitespace-nowrap transition-all">All</button>
+                    <button onclick="app.filterMusic('Single')" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-dark-card text-gray-400 hover:text-white border border-dark-border hover:border-gray-600 whitespace-nowrap transition-all">Singles</button>
+                    <button onclick="app.filterMusic('EP')" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-dark-card text-gray-400 hover:text-white border border-dark-border hover:border-gray-600 whitespace-nowrap transition-all">EPs</button>
+                    <button onclick="app.filterMusic('Album')" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-dark-card text-gray-400 hover:text-white border border-dark-border hover:border-gray-600 whitespace-nowrap transition-all">Albums</button>
+                    <button onclick="app.filterMusic('Remix')" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-dark-card text-gray-400 hover:text-white border border-dark-border hover:border-gray-600 whitespace-nowrap transition-all">Remixes</button>
+                </div>
+
+                <!-- Sorting Select -->
+                <div class="flex items-center gap-2 w-full lg:w-auto justify-end">
+                    <span class="text-xs text-gray-400 hidden sm:inline">Sort:</span>
+                    <select id="musicSortSelect" onchange="app.sortMusic(this.value)" class="bg-dark-card border border-dark-border rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                        <option value="newest">Newest First</option>
+                        <option value="plays">Most Played</option>
+                        <option value="likes">Most Liked</option>
+                        <option value="title">Alphabetical (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Music Cards Grid Container -->
+            <div id="musicGridContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Dynamically Rendered Song Cards -->
+            </div>
+            
+            <!-- Empty Music State -->
+            <div id="musicEmptyState" class="hidden text-center py-20 bg-dark-card/50 rounded-2xl border border-dark-border">
+                <i class="fa-solid fa-compact-disc text-5xl text-gray-600 mb-4 animate-spin"></i>
+                <h3 class="text-lg font-bold text-white mb-1">No songs found</h3>
+                <p class="text-sm text-gray-400">Try adjusting your search or filter options.</p>
+            </div>
+        </section>
+
+        <!-- PUBLIC VIEW: RELEASES SECTION -->
+        <section id="view-releases" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="mb-10">
+                <h1 class="text-4xl font-display font-black text-white mb-2">DISCOGRAPHY & RELEASES</h1>
+                <p class="text-gray-400">Explore full length albums, EPs, and standalone singles.</p>
+            </div>
+
+            <div id="releasesListGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Loaded Dynamically -->
+            </div>
+        </section>
+
+        <!-- PUBLIC VIEW: ABOUT SECTION -->
+        <section id="view-about" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 relative">
+                    <div class="aspect-square rounded-2xl overflow-hidden border-2 border-dark-border shadow-2xl relative group">
+                        <img id="aboutArtistPhoto" src="https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=800&q=80" alt="DJ Antho" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-block text-xs font-bold uppercase tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+                        Artist Profile
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl font-display font-black text-white" id="aboutArtistName">DJ ANTHO</h1>
+                    <p class="text-gray-300 text-lg leading-relaxed font-light" id="aboutArtistBio">
+                        DJ Antho is a pioneer in electronic, melodic techno, and high-energy club anthems. Blending deep driving basslines with soaring synth textures, Antho crafts immersive audio experiences that resonate across festival grounds and club venues worldwide.
+                    </p>
+
+                    <!-- Stats Counter Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-6 border-y border-dark-border">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-display font-bold text-brand-500" id="statTracksCount">0</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wider">Tracks</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-display font-bold text-white" id="statReleasesCount">0</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wider">Releases</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-display font-bold text-white" id="statTotalPlaysCount">0</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wider">Total Plays</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-display font-bold text-white" id="statFollowersCount">125K+</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wider">Followers</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Location & Genres</div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="px-3 py-1 bg-dark-card border border-dark-border rounded-lg text-xs font-medium text-gray-300" id="aboutArtistLocation"><i class="fa-solid fa-location-dot text-brand-500 mr-1.5"></i> Amsterdam / Worldwide</span>
+                            <span class="px-3 py-1 bg-dark-card border border-dark-border rounded-lg text-xs font-medium text-brand-500" id="aboutArtistGenres">Melodic Techno / House / Synthwave</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PUBLIC VIEW: PHOTOS GALLERY -->
+        <section id="view-photos" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h1 class="text-4xl font-display font-black text-white mb-2">PHOTO GALLERY</h1>
+                    <p class="text-gray-400">Live sets, studio sessions, and backstage moments.</p>
+                </div>
+                <!-- Category Filter -->
+                <div class="flex gap-2 overflow-x-auto hide-scrollbar" id="photoCategoryGroup">
+                    <button onclick="app.filterPhotos('All')" class="photo-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-500 text-black">All</button>
+                    <button onclick="app.filterPhotos('Live')" class="photo-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-dark-card text-gray-400 border border-dark-border">Live Sets</button>
+                    <button onclick="app.filterPhotos('Studio')" class="photo-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-dark-card text-gray-400 border border-dark-border">Studio</button>
+                    <button onclick="app.filterPhotos('Backstage')" class="photo-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-dark-card text-gray-400 border border-dark-border">Backstage</button>
+                </div>
+            </div>
+
+            <!-- Photo Masonry Grid -->
+            <div id="photosGridContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Dynamically loaded -->
+            </div>
+        </section>
+
+        <!-- PUBLIC VIEW: EVENTS & TOUR SECTION -->
+        <section id="view-events" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="mb-10">
+                <h1 class="text-4xl font-display font-black text-white mb-2">TOUR & EVENTS</h1>
+                <p class="text-gray-400">Catch DJ Antho live in concert and festival stages worldwide.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex border-b border-dark-border mb-8">
+                <button onclick="app.switchEventTab('upcoming')" id="tabUpcomingBtn" class="px-6 py-3 border-b-2 border-brand-500 text-white font-bold text-sm">Upcoming Events</button>
+                <button onclick="app.switchEventTab('past')" id="tabPastBtn" class="px-6 py-3 border-b-2 border-transparent text-gray-400 hover:text-white font-bold text-sm">Past Performances</button>
+            </div>
+
+            <!-- Events List -->
+            <div id="eventsListContainer" class="space-y-4">
+                <!-- Loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- ADMIN DASHBOARD CONTAINER (SaaS-style) -->
+        <section id="view-admin" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Admin Top Navigation Banner -->
+            <div class="glass-panel p-4 rounded-xl mb-8 flex items-center justify-between border-brand-500/30">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-brand-500 text-black flex items-center justify-center font-bold text-sm">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-display font-bold text-white text-base">Artist Control Suite</h2>
+                        <span class="text-xs text-gray-400">Logged in as DJ Antho (Admin)</span>
+                    </div>
+                </div>
+                <button onclick="app.logoutAdmin()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition-colors">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Exit Admin
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Sidebar Nav Controls -->
+                <div class="lg:col-span-3 space-y-1">
+                    <button onclick="app.switchAdminTab('overview')" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold bg-brand-500 text-black flex items-center gap-3 transition-colors" data-admintab="overview">
+                        <i class="fa-solid fa-chart-pie w-5"></i> Overview
+                    </button>
+                    <button onclick="app.switchAdminTab('music')" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-300 hover:bg-dark-card flex items-center gap-3 transition-colors" data-admintab="music">
+                        <i class="fa-solid fa-music w-5"></i> Music Manager
+                    </button>
+                    <button onclick="app.switchAdminTab('releases')" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-300 hover:bg-dark-card flex items-center gap-3 transition-colors" data-admintab="releases">
+                        <i class="fa-solid fa-record-vinyl w-5"></i> Releases Manager
+                    </button>
+                    <button onclick="app.switchAdminTab('photos')" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-300 hover:bg-dark-card flex items-center gap-3 transition-colors" data-admintab="photos">
+                        <i class="fa-solid fa-image w-5"></i> Photos Manager
+                    </button>
+                    <button onclick="app.switchAdminTab('events')" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-300 hover:bg-dark-card flex items-center gap-3 transition-colors" data-admintab="events">
+                        <i class="fa-solid fa-calendar-days w-5"></i> Events Manager
+                    </button>
+                    <button onclick="app.switchAdminTab('profile')" class="admin-tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-300 hover:bg-dark-card flex items-center gap-3 transition-colors" data-admintab="profile">
+                        <i class="fa-solid fa-user-gear w-5"></i> Profile & Settings
+                    </button>
+                </div>
+
+                <!-- Admin Tab Content Body -->
+                <div class="lg:col-span-9 space-y-8">
+                    
+                    <!-- TAB 1: OVERVIEW -->
+                    <div id="admintab-overview" class="admin-content-pane space-y-6">
+                        <!-- Stat Metric Cards -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <div class="p-4 rounded-xl bg-dark-card border border-dark-border">
+                                <span class="text-xs text-gray-400">Total Songs</span>
+                                <div class="text-2xl font-bold text-white mt-1" id="admStatSongs">0</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-dark-card border border-dark-border">
+                                <span class="text-xs text-gray-400">Total Plays</span>
+                                <div class="text-2xl font-bold text-brand-500 mt-1" id="admStatPlays">0</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-dark-card border border-dark-border">
+                                <span class="text-xs text-gray-400">Total Likes</span>
+                                <div class="text-2xl font-bold text-white mt-1" id="admStatLikes">0</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-dark-card border border-dark-border">
+                                <span class="text-xs text-gray-400">Downloads</span>
+                                <div class="text-2xl font-bold text-white mt-1" id="admStatDownloads">0</div>
+                            </div>
+                        </div>
+
+                        <!-- SVG Analytics Chart -->
+                        <div class="p-6 rounded-xl bg-dark-card border border-dark-border">
+                            <h3 class="text-sm font-bold text-white mb-4">Streaming Trends (Last 7 Days)</h3>
+                            <div class="h-48 w-full flex items-end justify-between gap-2 pt-6">
+                                <div class="flex-1 bg-brand-500/20 hover:bg-brand-500/40 rounded-t h-[40%] relative group transition-all"><span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-brand-500 opacity-0 group-hover:opacity-100">1.2K</span></div>
+                                <div class="flex-1 bg-brand-500/20 hover:bg-brand-500/40 rounded-t h-[65%] relative group transition-all"><span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-brand-500 opacity-0 group-hover:opacity-100">2.4K</span></div>
+                                <div class="flex-1 bg-brand-500/20 hover:bg-brand-500/40 rounded-t h-[50%] relative group transition-all"><span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-brand-500 opacity-0 group-hover:opacity-100">1.8K</span></div>
+                                <div class="flex-1 bg-brand-500/20 hover:bg-brand-500/40 rounded-t h-[85%] relative group transition-all"><span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-brand-500 opacity-0 group-hover:opacity-100">3.9K</span></div>
+                                <div class="flex-1 bg-brand-500/20 hover:bg-brand-500/40 rounded-t h-[70%] relative group transition-all"><span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-brand-500 opacity-0 group-hover:opacity-100">3.1K</span></div>
+                                <div class="flex-1 bg-brand-500/20 hover:bg-brand-500/40 rounded-t h-[95%] relative group transition-all"><span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-brand-500 opacity-0 group-hover:opacity-100">4.8K</span></div>
+                                <div class="flex-1 bg-brand-500 hover:bg-brand-600 rounded-t h-[100%] relative group transition-all"><span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-brand-500 opacity-100">5.2K</span></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-gray-500 mt-2 border-t border-dark-border pt-2">
+                                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                            </div>
+                        </div>
+
+                        <!-- Top Songs Table -->
+                        <div class="p-6 rounded-xl bg-dark-card border border-dark-border">
+                            <h3 class="text-sm font-bold text-white mb-4">Top Performing Songs</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs text-gray-300">
+                                    <thead class="text-gray-500 border-b border-dark-border">
+                                        <tr>
+                                            <th class="pb-3">Title</th>
+                                            <th class="pb-3">Plays</th>
+                                            <th class="pb-3">Likes</th>
+                                            <th class="pb-3">Downloads</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminTopSongsTableBody">
+                                        <!-- Loaded dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: SONG MANAGEMENT -->
+                    <div id="admintab-music" class="admin-content-pane hidden space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-white">Song Management</h3>
+                            <button onclick="app.openUploadModal()" class="px-4 py-2 rounded-lg bg-brand-500 text-black font-bold text-xs hover:bg-brand-600 transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-plus"></i> Upload New Song
+                            </button>
+                        </div>
+
+                        <div class="bg-dark-card rounded-xl border border-dark-border overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead class="bg-dark-surface text-gray-400 border-b border-dark-border">
+                                        <tr>
+                                            <th class="p-3">Track</th>
+                                            <th class="p-3">Genre</th>
+                                            <th class="p-3">Type</th>
+                                            <th class="p-3">Plays</th>
+                                            <th class="p-3">DL Enabled</th>
+                                            <th class="p-3 text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminSongListTable" class="divide-y divide-dark-border text-gray-300">
+                                        <!-- Dynamically generated -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: RELEASES MANAGER -->
+                    <div id="admintab-releases" class="admin-content-pane hidden space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-white">Releases Manager</h3>
+                            <button onclick="app.openCreateReleaseModal()" class="px-4 py-2 rounded-lg bg-brand-500 text-black font-bold text-xs hover:bg-brand-600 transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-plus"></i> Create Release
+                            </button>
+                        </div>
+                        <div id="adminReleasesList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: PHOTOS MANAGER -->
+                    <div id="admintab-photos" class="admin-content-pane hidden space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-white">Photo Gallery Manager</h3>
+                            <button onclick="app.openUploadPhotoModal()" class="px-4 py-2 rounded-lg bg-brand-500 text-black font-bold text-xs hover:bg-brand-600 transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-plus"></i> Add Photo
+                            </button>
+                        </div>
+                        <div id="adminPhotosGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                            <!-- Dynamically filled -->
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: EVENTS MANAGER -->
+                    <div id="admintab-events" class="admin-content-pane hidden space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-white">Tour & Event Manager</h3>
+                            <button onclick="app.openCreateEventModal()" class="px-4 py-2 rounded-lg bg-brand-500 text-black font-bold text-xs hover:bg-brand-600 transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-plus"></i> Add Event
+                            </button>
+                        </div>
+                        <div id="adminEventsList" class="space-y-3">
+                            <!-- Loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- TAB 6: ARTIST PROFILE & SETTINGS -->
+                    <div id="admintab-profile" class="admin-content-pane hidden space-y-6">
+                        <div class="p-6 rounded-xl bg-dark-card border border-dark-border space-y-4">
+                            <h3 class="text-base font-bold text-white border-b border-dark-border pb-3">Edit Artist Branding & Profile</h3>
+                            
+                            <form id="adminProfileForm" onsubmit="app.saveProfileSettings(event)" class="space-y-4 text-xs">
+                                <div>
+                                    <label class="block text-gray-400 mb-1">Artist Name</label>
+                                    <input type="text" id="setArtistName" class="w-full bg-dark-surface border border-dark-border rounded p-2 text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-400 mb-1">Artist Tagline</label>
+                                    <input type="text" id="setArtistTagline" class="w-full bg-dark-surface border border-dark-border rounded p-2 text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-400 mb-1">Biography</label>
+                                    <textarea id="setArtistBio" rows="4" class="w-full bg-dark-surface border border-dark-border rounded p-2 text-white"></textarea>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-gray-400 mb-1">Location</label>
+                                        <input type="text" id="setArtistLocation" class="w-full bg-dark-surface border border-dark-border rounded p-2 text-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-400 mb-1">Primary Genres</label>
+                                        <input type="text" id="setArtistGenres" class="w-full bg-dark-surface border border-dark-border rounded p-2 text-white">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-400 mb-1">Profile Image URL</label>
+                                    <input type="text" id="setArtistPhoto" class="w-full bg-dark-surface border border-dark-border rounded p-2 text-white">
+                                </div>
+
+                                <div class="pt-4 border-t border-dark-border flex justify-end">
+                                    <button type="submit" class="px-6 py-2 rounded bg-brand-500 hover:bg-brand-600 text-black font-bold text-xs transition-colors">
+                                        Save Profile Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PERSISTENT AUDIO PLAYER (Fixed Bottom Desktop & Mobile Bar) -->
+    <div id="persistentPlayer" class="fixed bottom-0 left-0 right-0 z-50 glass-panel border-t border-dark-border py-3 px-4 transition-transform duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            
+            <!-- Song Meta Left -->
+            <div class="flex items-center gap-3 w-1/4 min-w-[160px]">
+                <img id="playerCover" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=150&q=80" alt="Cover" class="w-12 h-12 rounded-lg object-cover border border-dark-border">
+                <div class="truncate">
+                    <h4 id="playerTitle" class="text-sm font-bold text-white truncate cursor-pointer hover:text-brand-500 transition-colors" onclick="app.openCurrentTrackModal()">Select a track</h4>
+                    <p id="playerArtist" class="text-xs text-gray-400 truncate">DJ Antho</p>
+                </div>
+                <button id="playerLikeBtn" onclick="app.toggleLikeCurrentTrack()" class="text-gray-500 hover:text-brand-500 transition-colors ml-1 hidden sm:block">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+            </div>
+
+            <!-- Controls & Progress Center -->
+            <div class="flex-1 max-w-2xl flex flex-col items-center gap-1">
+                <!-- Control Buttons -->
+                <div class="flex items-center gap-4 sm:gap-6 text-gray-300">
+                    <button onclick="app.toggleShuffle()" id="playerShuffleBtn" class="hover:text-brand-500 text-xs transition-colors"><i class="fa-solid fa-shuffle"></i></button>
+                    <button onclick="app.playPreviousTrack()" class="hover:text-white transition-colors"><i class="fa-solid fa-backward-step text-sm"></i></button>
+                    
+                    <button onclick="app.togglePlayPause()" id="playerPlayPauseBtn" class="w-9 h-9 rounded-full bg-brand-500 text-black flex items-center justify-center hover:scale-105 transition-transform shadow-md">
+                        <i class="fa-solid fa-play text-sm ml-0.5"></i>
+                    </button>
+                    
+                    <button onclick="app.playNextTrack()" class="hover:text-white transition-colors"><i class="fa-solid fa-forward-step text-sm"></i></button>
+                    <button onclick="app.toggleRepeat()" id="playerRepeatBtn" class="hover:text-brand-500 text-xs transition-colors"><i class="fa-solid fa-repeat"></i></button>
+                </div>
+
+                <!-- Seek Bar -->
+                <div class="w-full flex items-center gap-2 text-[11px] font-mono text-gray-400">
+                    <span id="playerCurrentTime">0:00</span>
+                    <input type="range" id="playerSeeker" value="0" min="0" max="100" oninput="app.handleSeek(this.value)" class="w-full h-1 bg-dark-border rounded-lg appearance-none cursor-pointer accent-brand-500">
+                    <span id="playerTotalDuration">0:00</span>
+                </div>
+            </div>
+
+            <!-- Visualizer & Volume Right -->
+            <div class="hidden md:flex items-center justify-end gap-4 w-1/4">
+                <!-- Mini Frequency Visualizer Canvas -->
+                <canvas id="playerMiniVisualizer" class="w-20 h-8 rounded bg-dark-card/50 border border-dark-border/50"></canvas>
+
+                <!-- Queue Button -->
+                <button onclick="app.toggleQueueDrawer()" class="p-2 text-gray-400 hover:text-white transition-colors relative" title="Queue">
+                    <i class="fa-solid fa-list-ul text-sm"></i>
+                </button>
+
+                <!-- Volume Slider -->
+                <div class="flex items-center gap-2 text-gray-400">
+                    <button onclick="app.toggleMute()" id="playerMuteBtn" class="hover:text-white"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    <input type="range" id="playerVolume" min="0" max="1" step="0.05" value="0.8" oninput="app.handleVolumeChange(this.value)" class="w-16 h-1 bg-dark-border rounded appearance-none cursor-pointer accent-brand-500">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FAVORITES SIDE DRAWER -->
+    <div id="favoritesDrawer" class="fixed inset-y-0 right-0 z-50 w-full sm:w-96 glass-panel border-l border-dark-border translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between">
+        <div>
+            <div class="flex items-center justify-between pb-4 border-b border-dark-border mb-4">
+                <h3 class="font-display font-bold text-white text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-heart text-brand-500"></i> My Favorites
+                </h3>
+                <button onclick="app.toggleFavoritesDrawer()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="favoritesList" class="space-y-3 overflow-y-auto max-h-[70vh]">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+        <p class="text-[11px] text-gray-500 text-center">Saved to local browser storage.</p>
+    </div>
+
+    <!-- QUEUE SIDE DRAWER -->
+    <div id="queueDrawer" class="fixed inset-y-0 right-0 z-50 w-full sm:w-96 glass-panel border-l border-dark-border translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between">
+        <div>
+            <div class="flex items-center justify-between pb-4 border-b border-dark-border mb-4">
+                <h3 class="font-display font-bold text-white text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-list-ul text-brand-500"></i> Play Queue
+                </h3>
+                <button onclick="app.toggleQueueDrawer()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="queueList" class="space-y-3 overflow-y-auto max-h-[70vh]">
+                <!-- Queue Items -->
+            </div>
+        </div>
+        <button onclick="app.clearQueue()" class="w-full py-2 bg-dark-card border border-dark-border text-xs font-semibold text-gray-300 hover:text-white rounded-lg transition-colors">
+            Clear Queue
+        </button>
+    </div>
+
+    <!-- COMMAND PALETTE MODAL (Cmd + K) -->
+    <div id="cmdPaletteModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-start justify-center pt-20 px-4">
+        <div class="w-full max-w-xl glass-panel rounded-2xl border border-dark-border overflow-hidden shadow-2xl">
+            <div class="p-4 border-b border-dark-border flex items-center gap-3">
+                <i class="fa-solid fa-terminal text-brand-500"></i>
+                <input type="text" id="cmdPaletteInput" oninput="app.handleCmdPaletteInput(this.value)" placeholder="Type a command or search music, events..." class="w-full bg-transparent text-white focus:outline-none text-sm placeholder-gray-500">
+                <kbd class="text-[10px] bg-dark-card border border-dark-border px-1.5 py-0.5 rounded text-gray-400 font-mono">ESC</kbd>
+            </div>
+            <div id="cmdPaletteResults" class="p-2 max-h-80 overflow-y-auto space-y-1">
+                <!-- Command options dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN AUTH DEMO MODAL -->
+    <div id="adminAuthModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center px-4">
+        <div class="w-full max-w-md bg-dark-surface p-6 rounded-2xl border border-dark-border space-y-4">
+            <div class="text-center">
+                <div class="w-12 h-12 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-display font-bold text-white text-xl">Admin Authentication</h3>
+                <p class="text-xs text-gray-400 mt-1">Access DJ Antho Artist Control Suite</p>
+            </div>
+
+            <form onsubmit="app.submitAdminAuth(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1">Access Passcode</label>
+                    <input type="password" id="adminPasswordInput" placeholder="Enter 'antho2026' or click Demo Login" class="w-full bg-dark-card border border-dark-border rounded-lg p-2.5 text-white text-sm focus:border-brand-500 focus:outline-none">
+                </div>
+                <div class="bg-brand-500/10 border border-brand-500/20 rounded-lg p-3 text-[11px] text-gray-300">
+                    <span class="font-bold text-brand-500">Demo Note:</span> Passcode is <code class="bg-black/40 px-1 py-0.5 rounded text-white font-mono">antho2026</code>. Frontend-only prototype layer designed for clean backend integration.
+                </div>
+                <div class="flex gap-2 pt-2">
+                    <button type="button" onclick="app.closeAdminAuthModal()" class="flex-1 py-2.5 rounded-lg border border-dark-border text-xs font-semibold text-gray-400 hover:text-white">Cancel</button>
+                    <button type="submit" class="flex-1 py-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 font-bold text-xs text-black">Login to Dashboard</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SONG UPLOAD MODAL -->
+    <div id="uploadSongModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="w-full max-w-lg glass-panel p-6 rounded-2xl border border-dark-border max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-display font-bold text-white text-lg">Upload Track</h3>
+                <button onclick="app.closeUploadModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <form id="uploadSongForm" onsubmit="app.handleUploadSong(event)" class="space-y-4 text-xs">
+                <!-- Drag and drop zone -->
+                <div class="border-2 border-dashed border-dark-border hover:border-brand-500 rounded-xl p-6 text-center cursor-pointer transition-colors" onclick="document.getElementById('audioFileInput').click()">
+                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-brand-500 mb-2"></i>
+                    <p class="text-gray-300 font-semibold">Click to select audio file or drag & drop</p>
+                    <p class="text-gray-500 text-[10px] mt-1">Supports MP3, WAV, OGG (Processed via IndexedDB AudioStorageService)</p>
+                    <input type="file" id="audioFileInput" accept="audio/*" class="hidden" onchange="app.handleFileSelectNotice(this)">
+                    <p id="fileSelectedName" class="text-brand-500 font-mono mt-2 hidden"></p>
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 mb-1">Song Title</label>
+                    <input type="text" id="upTitle" required class="w-full bg-dark-card border border-dark-border rounded p-2 text-white">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-gray-400 mb-1">Type</label>
+                        <select id="upType" class="w-full bg-dark-card border border-dark-border rounded p-2 text-white">
+                            <option value="Single">Single</option>
+                            <option value="EP">EP Track</option>
+                            <option value="Album">Album Track</option>
+                            <option value="Remix">Remix</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1">Genre</label>
+                        <input type="text" id="upGenre" value="Melodic Techno" class="w-full bg-dark-card border border-dark-border rounded p-2 text-white">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 mb-1">Cover Artwork Image URL</label>
+                    <input type="text" id="upCoverUrl" placeholder="https://images.unsplash.com/..." class="w-full bg-dark-card border border-dark-border rounded p-2 text-white">
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <label class="flex items-center gap-2 cursor-pointer text-gray-300">
+                        <input type="checkbox" id="upDownloadable" checked class="accent-brand-500">
+                        Enable Fan Downloads
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-brand-500 hover:bg-brand-600 font-bold text-black rounded-xl transition-colors">
+                    Upload & Publish Track
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SONG DETAILS & RELEASE MODAL -->
+    <div id="detailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div id="detailModalContent" class="w-full max-w-2xl glass-panel p-6 sm:p-8 rounded-2xl border border-dark-border max-h-[90vh] overflow-y-auto">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastContainer" class="fixed top-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-dark-border bg-dark-surface py-12 mt-16 mb-20 md:mb-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <h3 class="font-display font-black text-xl text-white tracking-wider">DJ ANTHO</h3>
+                <p class="text-xs text-gray-400 mt-1">Sound beyond the ordinary.</p>
+            </div>
+            <div class="flex items-center gap-6 text-gray-400 text-sm">
+                <a href="#home" onclick="app.navigateTo('home')" class="hover:text-white transition-colors">Home</a>
+                <a href="#music" onclick="app.navigateTo('music')" class="hover:text-white transition-colors">Music</a>
+                <a href="#events" onclick="app.navigateTo('events')" class="hover:text-white transition-colors">Tour</a>
+                <a href="#about" onclick="app.navigateTo('about')" class="hover:text-white transition-colors">Bio</a>
+            </div>
+            <div class="text-xs text-gray-500">
+                © 2026 DJ Antho. All rights reserved. Built for independent music platforms.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT APPLICATION ARCHITECTURE -->
+    <script>
+        /**
+         * DJ ANTHO PLATFORM CORE JAVASCRIPT
+         * Clean Architecture: DataService, AudioStorageService, WebAudio Visualizer Engine & App State Manager
+         */
+
+        // IndexedDB / Data Storage Abstraction Layer
+        class DataService {
+            constructor() {
+                this.STORAGE_KEY = 'dj_antho_app_state_v1';
+                this.initDefaults();
+            }
+
+            initDefaults() {
+                const existing = localStorage.getItem(this.STORAGE_KEY);
+                if (!existing) {
+                    const defaultState = {
+                        artist: {
+                            name: "DJ ANTHO",
+                            tagline: "Sound beyond the ordinary.",
+                            bio: "DJ Antho is a pioneer in electronic, melodic techno, and high-energy club anthems. Blending deep driving basslines with soaring synth textures, Antho crafts immersive audio experiences that resonate across festival grounds and club venues worldwide.",
+                            location: "Amsterdam / Worldwide",
+                            genres: "Melodic Techno / House / Synthwave",
+                            profileImage: "https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=800&q=80",
+                            followers: "125K+"
+                        },
+                        songs: [
+                            {
+                                id: "song-1",
+                                title: "Midnight Frequency",
+                                type: "Single",
+                                genre: "Melodic Techno",
+                                releaseDate: "2026-02-10",
+                                coverUrl: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=600&q=80",
+                                audioUrl: "https://actions.google.com/sounds/v1/science_fiction/alien_beam.ogg",
+                                duration: "4:15",
+                                plays: 48200,
+                                likes: 3200,
+                                downloads: 850,
+                                featured: true,
+                                downloadable: true,
+                                description: "Driving techno baseline infused with ethereal dark synth harmonies."
+                            },
+                            {
+                                id: "song-2",
+                                title: "After Hours",
+                                type: "EP",
+                                genre: "Deep House",
+                                releaseDate: "2026-01-18",
+                                coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",
+                                audioUrl: "https://actions.google.com/sounds/v1/science_fiction/spaceship_flyby.ogg",
+                                duration: "5:02",
+                                plays: 32100,
+                                likes: 2150,
+                                downloads: 610,
+                                featured: false,
+                                downloadable: true,
+                                description: "Hypnotic late night club cuts."
+                            },
+                            {
+                                id: "song-3",
+                                title: "Neon Dreams",
+                                type: "Single",
+                                genre: "Synthwave",
+                                releaseDate: "2025-11-05",
+                                coverUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80",
+                                audioUrl: "https://actions.google.com/sounds/v1/ambiences/outdoor_ambience.ogg",
+                                duration: "3:48",
+                                plays: 64000,
+                                likes: 5100,
+                                downloads: 1200,
+                                featured: false,
+                                downloadable: true,
+                                description: "Retro-futuristic analog lead synths and heavy drums."
+                            },
+                            {
+                                id: "song-4",
+                                title: "Lost In The Sound",
+                                type: "Album",
+                                genre: "Progressive House",
+                                releaseDate: "2025-09-20",
+                                coverUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+                                audioUrl: "https://actions.google.com/sounds/v1/science_fiction/laser_gun.ogg",
+                                duration: "6:10",
+                                plays: 29800,
+                                likes: 1980,
+                                downloads: 430,
+                                featured: false,
+                                downloadable: true,
+                                description: "Sprawling melodic atmosphere built for stadium sound systems."
+                            }
+                        ],
+                        releases: [
+                            {
+                                id: "rel-1",
+                                title: "Midnight Frequency - EP",
+                                type: "EP",
+                                coverUrl: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=600&q=80",
+                                releaseDate: "2026-02-10",
+                                trackCount: 3,
+                                genre: "Melodic Techno"
+                            },
+                            {
+                                id: "rel-2",
+                                title: "Chronicles of Night",
+                                type: "Album",
+                                coverUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80",
+                                releaseDate: "2025-09-20",
+                                trackCount: 8,
+                                genre: "Electronic"
+                            }
+                        ],
+                        events: [
+                            {
+                                id: "evt-1",
+                                title: "Awakenings Festival Set",
+                                date: "2026-07-15",
+                                time: "23:00",
+                                venue: "Gashouder",
+                                location: "Amsterdam, Netherlands",
+                                ticketUrl: "https://example.com/tickets",
+                                past: false
+                            },
+                            {
+                                id: "evt-2",
+                                title: "Club Space Miami - Main Room",
+                                date: "2026-08-22",
+                                time: "02:00",
+                                venue: "Club Space",
+                                location: "Miami, FL",
+                                ticketUrl: "https://example.com/tickets",
+                                past: false
+                            },
+                            {
+                                id: "evt-3",
+                                title: "Printworks London Closing Set",
+                                date: "2025-12-10",
+                                time: "01:00",
+                                venue: "Printworks",
+                                location: "London, UK",
+                                ticketUrl: "#",
+                                past: true
+                            }
+                        ],
+                        photos: [
+                            { id: "p1", url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80", category: "Live", title: "Festival Mainstage" },
+                            { id: "p2", url: "https://images.unsplash.com/photo-1598387993441-a364f854c3e1?auto=format&fit=crop&w=600&q=80", category: "Studio", title: "Analog Synth Session" },
+                            { id: "p3", url: "https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&w=600&q=80", category: "Live", title: "Late Night Crowd" },
+                            { id: "p4", url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80", category: "Backstage", title: "Backstage Prep" }
+                        ],
+                        favorites: ["song-1"]
+                    };
+                    this.save(defaultState);
+                }
+            }
+
+            get() {
+                return JSON.parse(localStorage.getItem(this.STORAGE_KEY));
+            }
+
+            save(data) {
+                localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+            }
+        }
+
+        // Audio Storage Abstraction for Production Extensibility
+        class AudioStorageService {
+            static async uploadAudioBlob(file) {
+                // Returns object URL for browser session prototype
+                return URL.createObjectURL(file);
+            }
+        }
+
+        // Main Web Application Class
+        class DJAnthoApp {
+            constructor() {
+                this.db = new DataService();
+                this.data = this.db.get();
+                this.audio = new Audio();
+                this.audioContext = null;
+                this.analyser = null;
+                this.dataArray = null;
+
+                // Player state
+                this.currentSong = null;
+                this.isPlaying = false;
+                this.queue = [];
+                this.isShuffle = false;
+                this.isRepeat = false;
+                this.isAdminAuthenticated = false;
+
+                this.init();
+            }
+
+            init() {
+                this.setupAudioEvents();
+                this.setupKeyboardShortcuts();
+                this.renderAllViews();
+                this.initHeroVisualizer();
+                this.initPlayerVisualizer();
+            }
+
+            // --- AUDIO SYSTEM ENGINE ---
+            setupAudioEvents() {
+                this.audio.addEventListener('timeupdate', () => {
+                    if (this.audio.duration) {
+                        const progress = (this.audio.currentTime / this.audio.duration) * 100;
+                        document.getElementById('playerSeeker').value = progress;
+                        document.getElementById('playerCurrentTime').textContent = this.formatTime(this.audio.currentTime);
+                        document.getElementById('playerTotalDuration').textContent = this.formatTime(this.audio.duration);
+                    }
+                });
+
+                this.audio.addEventListener('ended', () => {
+                    if (this.isRepeat) {
+                        this.audio.currentTime = 0;
+                        this.audio.play();
+                    } else {
+                        this.playNextTrack();
+                    }
+                });
+            }
+
+            setupWebAudioContext() {
+                if (!this.audioContext) {
+                    try {
+                        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                        this.audioContext = new AudioCtx();
+                        this.analyser = this.audioContext.createAnalyser();
+                        const source = this.audioContext.createMediaElementSource(this.audio);
+                        source.connect(this.analyser);
+                        this.analyser.connect(this.audioContext.destination);
+                        this.analyser.fftSize = 64;
+                        this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+                    } catch(e) {
+                        console.log("WebAudio context fallback active.");
+                    }
+                }
+            }
+
+            playTrack(songId) {
+                const song = this.data.songs.find(s => s.id === songId);
+                if (!song) return;
+
+                if (!this.audioContext) this.setupWebAudioContext();
+                if (this.audioContext && this.audioContext.state === 'suspended') {
+                    this.audioContext.resume();
+                }
+
+                this.currentSong = song;
+                this.audio.src = song.audioUrl;
+                this.audio.play().then(() => {
+                    this.isPlaying = true;
+                    song.plays++;
+                    this.db.save(this.data);
+                    this.updatePlayerUI();
+                    this.showToast(`Now playing: ${song.title}`);
+                }).catch(err => {
+                    this.showToast("Playback started (Demo Audio Stream)");
+                    this.isPlaying = true;
+                    this.updatePlayerUI();
+                });
+            }
+
+            togglePlayPause() {
+                if (!this.currentSong && this.data.songs.length > 0) {
+                    this.playTrack(this.data.songs[0].id);
+                    return;
+                }
+                if (this.isPlaying) {
+                    this.audio.pause();
+                    this.isPlaying = false;
+                } else {
+                    this.audio.play();
+                    this.isPlaying = true;
+                }
+                this.updatePlayerUI();
+            }
+
+            playNextTrack() {
+                if (this.queue.length > 0) {
+                    const nextSong = this.queue.shift();
+                    this.renderQueue();
+                    this.playTrack(nextSong.id);
+                    return;
+                }
+                if (!this.currentSong) return;
+                const index = this.data.songs.findIndex(s => s.id === this.currentSong.id);
+                const nextIndex = (index + 1) % this.data.songs.length;
+                this.playTrack(this.data.songs[nextIndex].id);
+            }
+
+            playPreviousTrack() {
+                if (!this.currentSong) return;
+                const index = this.data.songs.findIndex(s => s.id === this.currentSong.id);
+                const prevIndex = (index - 1 + this.data.songs.length) % this.data.songs.length;
+                this.playTrack(this.data.songs[prevIndex].id);
+            }
+
+            handleSeek(value) {
+                if (this.audio.duration) {
+                    this.audio.currentTime = (value / 100) * this.audio.duration;
+                }
+            }
+
+            handleVolumeChange(value) {
+                this.audio.volume = value;
+            }
+
+            toggleMute() {
+                this.audio.muted = !this.audio.muted;
+                const icon = document.querySelector('#playerMuteBtn i');
+                icon.className = this.audio.muted ? "fa-solid fa-volume-xmark text-xs text-red-500" : "fa-solid fa-volume-high text-xs";
+            }
+
+            toggleShuffle() {
+                this.isShuffle = !this.isShuffle;
+                document.getElementById('playerShuffleBtn').classList.toggle('text-brand-500', this.isShuffle);
+                this.showToast(this.isShuffle ? "Shuffle On" : "Shuffle Off");
+            }
+
+            toggleRepeat() {
+                this.isRepeat = !this.isRepeat;
+                document.getElementById('playerRepeatBtn').classList.toggle('text-brand-500', this.isRepeat);
+                this.showToast(this.isRepeat ? "Repeat On" : "Repeat Off");
+            }
+
+            updatePlayerUI() {
+                if (!this.currentSong) return;
+                document.getElementById('playerCover').src = this.currentSong.coverUrl;
+                document.getElementById('playerTitle').textContent = this.currentSong.title;
+                document.getElementById('playerArtist').textContent = this.data.artist.name;
+
+                const playBtnIcon = document.querySelector('#playerPlayPauseBtn i');
+                playBtnIcon.className = this.isPlaying ? "fa-solid fa-pause text-sm" : "fa-solid fa-play text-sm ml-0.5";
+
+                const isFav = this.data.favorites.includes(this.currentSong.id);
+                document.getElementById('playerLikeBtn').classList.toggle('text-brand-500', isFav);
+            }
+
+            // --- FAVORITES ENGINE ---
+            toggleFavorite(songId) {
+                const idx = this.data.favorites.indexOf(songId);
+                if (idx > -1) {
+                    this.data.favorites.splice(idx, 1);
+                    this.showToast("Removed from favorites");
+                } else {
+                    this.data.favorites.push(songId);
+                    this.showToast("Added to favorites");
+                }
+                this.db.save(this.data);
+                this.renderFavoritesDrawer();
+                this.renderMusicGrid();
+                this.updatePlayerUI();
+            }
+
+            toggleLikeCurrentTrack() {
+                if (this.currentSong) {
+                    this.toggleFavorite(this.currentSong.id);
+                }
+            }
+
+            // --- VIEW NAVIGATION ENGINE ---
+            navigateTo(viewId) {
+                document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+                const target = document.getElementById(`view-${viewId}`);
+                if (target) {
+                    target.classList.remove('hidden');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+
+                document.querySelectorAll('.nav-link').forEach(el => {
+                    const active = el.getAttribute('data-target') === viewId;
+                    el.classList.toggle('text-brand-500', active);
+                });
+            }
+
+            renderAllViews() {
+                this.renderHome();
+                this.renderMusicGrid();
+                this.renderReleases();
+                this.renderAbout();
+                this.renderPhotos();
+                this.renderEvents();
+                this.renderFavoritesDrawer();
+                this.renderAdminOverview();
+            }
+
+            renderHome() {
+                // Featured track
+                const featured = this.data.songs.find(s => s.featured) || this.data.songs[0];
+                if (featured) {
+                    document.getElementById('featuredTrackContainer').innerHTML = `
+                        <div class="md:col-span-4 relative group rounded-xl overflow-hidden aspect-square border border-dark-border">
+                            <img src="${featured.coverUrl}" class="w-full h-full object-cover">
+                            <button onclick="app.playTrack('${featured.id}')" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="w-16 h-16 rounded-full bg-brand-500 text-black flex items-center justify-center text-xl shadow-xl hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-play ml-1"></i>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="md:col-span-8 space-y-4">
+                            <div class="flex items-center gap-2 text-xs font-bold text-brand-500 uppercase tracking-widest">
+                                <span>${featured.genre}</span> • <span>${featured.type}</span>
+                            </div>
+                            <h3 class="text-3xl font-display font-black text-white">${featured.title}</h3>
+                            <p class="text-sm text-gray-400 line-clamp-2">${featured.description}</p>
+                            <div class="flex flex-wrap items-center gap-4 pt-2">
+                                <button onclick="app.playTrack('${featured.id}')" class="px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-black font-bold text-xs flex items-center gap-2">
+                                    <i class="fa-solid fa-play"></i> Play Track
+                                </button>
+                                <button onclick="app.toggleFavorite('${featured.id}')" class="p-3 rounded-xl bg-dark-card border border-dark-border hover:text-brand-500 text-gray-300">
+                                    <i class="fa-solid fa-heart"></i>
+                                </button>
+                                <button onclick="app.shareTrack('${featured.id}')" class="p-3 rounded-xl bg-dark-card border border-dark-border hover:text-white text-gray-300">
+                                    <i class="fa-solid fa-share-nodes"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Home Releases Preview
+                const releasesHtml = this.data.releases.slice(0, 3).map(rel => `
+                    <div class="glass-panel rounded-xl p-4 border border-dark-border hover:border-brand-500/50 transition-all group cursor-pointer" onclick="app.openReleaseModal('${rel.id}')">
+                        <div class="aspect-square rounded-lg overflow-hidden mb-3 relative">
+                            <img src="${rel.coverUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-bold text-white text-base group-hover:text-brand-500 transition-colors">${rel.title}</h4>
+                        <p class="text-xs text-gray-400 mt-1">${rel.genre} • ${rel.trackCount} Tracks</p>
+                    </div>
+                `).join('');
+                document.getElementById('homeReleasesGrid').innerHTML = releasesHtml;
+            }
+
+            renderMusicGrid() {
+                const container = document.getElementById('musicGridContainer');
+                if (!container) return;
+
+                container.innerHTML = this.data.songs.map(song => {
+                    const isFav = this.data.favorites.includes(song.id);
+                    return `
+                        <div class="glass-panel p-4 rounded-xl border border-dark-border hover:border-brand-500/40 transition-all group flex flex-col justify-between">
+                            <div>
+                                <div class="relative aspect-square rounded-lg overflow-hidden mb-3 border border-dark-border">
+                                    <img src="${song.coverUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <button onclick="app.playTrack('${song.id}')" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <div class="w-12 h-12 rounded-full bg-brand-500 text-black flex items-center justify-center text-lg shadow-lg hover:scale-110 transition-transform">
+                                            <i class="fa-solid fa-play ml-0.5"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="flex items-start justify-between gap-2">
+                                    <div class="truncate">
+                                        <h4 class="font-bold text-white text-sm truncate hover:text-brand-500 cursor-pointer" onclick="app.openSongDetail('${song.id}')">${song.title}</h4>
+                                        <p class="text-xs text-gray-400 truncate">${song.genre}</p>
+                                    </div>
+                                    <button onclick="app.toggleFavorite('${song.id}')" class="text-xs p-1 ${isFav ? 'text-brand-500' : 'text-gray-500 hover:text-gray-300'}">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] text-gray-500 border-t border-dark-border/60 pt-3 mt-3">
+                                <span><i class="fa-solid fa-headphones mr-1"></i> ${song.plays}</span>
+                                <span>${song.duration}</span>
+                                <button onclick="app.addToQueue('${song.id}')" class="hover:text-brand-500" title="Add to Queue"><i class="fa-solid fa-plus"></i> Queue</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            renderReleases() {
+                document.getElementById('releasesListGrid').innerHTML = this.data.releases.map(rel => `
+                    <div class="glass-panel p-5 rounded-2xl border border-dark-border hover:border-brand-500 transition-all cursor-pointer group" onclick="app.openReleaseModal('${rel.id}')">
+                        <div class="aspect-square rounded-xl overflow-hidden mb-4 border border-dark-border">
+                            <img src="${rel.coverUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-brand-500 font-bold uppercase tracking-wider">${rel.type}</span>
+                            <span class="text-xs text-gray-500">${rel.releaseDate}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mt-1 group-hover:text-brand-500 transition-colors">${rel.title}</h3>
+                        <p class="text-xs text-gray-400 mt-1">${rel.genre} • ${rel.trackCount} Tracks</p>
+                    </div>
+                `).join('');
+            }
+
+            renderAbout() {
+                const a = this.data.artist;
+                document.getElementById('aboutArtistName').textContent = a.name;
+                document.getElementById('aboutArtistTagline').textContent = `"${a.tagline}"`;
+                document.getElementById('aboutArtistBio').textContent = a.bio;
+                document.getElementById('aboutArtistPhoto').src = a.profileImage;
+                document.getElementById('statTracksCount').textContent = this.data.songs.length;
+                document.getElementById('statReleasesCount').textContent = this.data.releases.length;
+                const totalPlays = this.data.songs.reduce((acc, curr) => acc + curr.plays, 0);
+                document.getElementById('statTotalPlaysCount').textContent = (totalPlays / 1000).toFixed(1) + 'K';
+            }
+
+            renderPhotos() {
+                document.getElementById('photosGridContainer').innerHTML = this.data.photos.map(p => `
+                    <div class="relative group aspect-square rounded-xl overflow-hidden border border-dark-border bg-dark-card cursor-pointer">
+                        <img src="${p.url}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+                            <span class="text-[10px] text-brand-500 font-bold uppercase">${p.category}</span>
+                            <span class="text-xs font-bold text-white">${p.title}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            renderEvents() {
+                document.getElementById('eventsListContainer').innerHTML = this.data.events.map(e => `
+                    <div class="glass-panel p-5 rounded-xl border border-dark-border flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-lg bg-dark-card border border-dark-border flex flex-col items-center justify-center text-center">
+                                <span class="text-xs text-brand-500 font-bold uppercase">${e.date.split('-')[1]}</span>
+                                <span class="text-lg font-bold text-white leading-none">${e.date.split('-')[2]}</span>
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">${e.title}</h4>
+                                <p class="text-xs text-gray-400 mt-0.5"><i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> ${e.venue}, ${e.location}</p>
+                            </div>
+                        </div>
+                        <a href="${e.ticketUrl}" target="_blank" class="px-5 py-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 text-black font-bold text-xs text-center transition-colors">Get Tickets</a>
+                    </div>
+                `).join('');
+            }
+
+            // --- WEB AUDIO API REAL-TIME VISUALIZERS ---
+            initHeroVisualizer() {
+                const canvas = document.getElementById('heroVisualizerCanvas');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+
+                const resize = () => {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                };
+                resize();
+                window.addEventListener('resize', resize);
+
+                const animate = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const bars = 40;
+                    const width = canvas.width / bars;
+
+                    for (let i = 0; i < bars; i++) {
+                        let height = 20;
+                        if (this.analyser && this.dataArray && this.isPlaying) {
+                            this.analyser.getByteFrequencyData(this.dataArray);
+                            height = (this.dataArray[i % this.dataArray.length] / 255) * (canvas.height * 0.6);
+                        } else {
+                            height = Math.sin(Date.now() * 0.003 + i) * 15 + 25;
+                        }
+
+                        ctx.fillStyle = 'rgba(255, 85, 0, 0.25)';
+                        ctx.fillRect(i * width, canvas.height - height, width - 2, height);
+                    }
+                    requestAnimationFrame(animate);
+                };
+                animate();
+            }
+
+            initPlayerVisualizer() {
+                const canvas = document.getElementById('playerMiniVisualizer');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+
+                const animate = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const bars = 10;
+                    const w = canvas.width / bars;
+
+                    for (let i = 0; i < bars; i++) {
+                        let h = 4;
+                        if (this.analyser && this.dataArray && this.isPlaying) {
+                            h = (this.dataArray[i * 2] / 255) * canvas.height;
+                        }
+                        ctx.fillStyle = '#ff5500';
+                        ctx.fillRect(i * w, canvas.height - h, w - 1, h);
+                    }
+                    requestAnimationFrame(animate);
+                };
+                animate();
+            }
+
+            // --- ADMIN DASHBOARD SUITE ---
+            handleAdminClick() {
+                if (this.isAdminAuthenticated) {
+                    this.navigateTo('admin');
+                } else {
+                    document.getElementById('adminAuthModal').classList.remove('hidden');
+                }
+            }
+
+            submitAdminAuth(e) {
+                e.preventDefault();
+                const pass = document.getElementById('adminPasswordInput').value;
+                if (pass === 'antho2026' || pass === '') {
+                    this.isAdminAuthenticated = true;
+                    document.getElementById('adminAuthModal').classList.add('hidden');
+                    document.getElementById('adminNavText').textContent = "Dashboard";
+                    this.navigateTo('admin');
+                    this.showToast("Authenticated as DJ Antho Admin");
+                } else {
+                    this.showToast("Invalid Admin Passcode");
+                }
+            }
+
+            closeAdminAuthModal() {
+                document.getElementById('adminAuthModal').classList.add('hidden');
+            }
+
+            logoutAdmin() {
+                this.isAdminAuthenticated = false;
+                document.getElementById('adminNavText').textContent = "Admin";
+                this.navigateTo('home');
+                this.showToast("Logged out of Admin Control Suite");
+            }
+
+            switchAdminTab(tabId) {
+                document.querySelectorAll('.admin-content-pane').forEach(el => el.classList.add('hidden'));
+                document.getElementById(`admintab-${tabId}`).classList.remove('hidden');
+
+                document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                    const active = btn.getAttribute('data-admintab') === tabId;
+                    btn.className = active ? 
+                        'admin-tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold bg-brand-500 text-black flex items-center gap-3 transition-colors' : 
+                        'admin-tab-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-gray-300 hover:bg-dark-card flex items-center gap-3 transition-colors';
+                });
+            }
+
+            renderAdminOverview() {
+                document.getElementById('admStatSongs').textContent = this.data.songs.length;
+                const totalPlays = this.data.songs.reduce((a, b) => a + b.plays, 0);
+                document.getElementById('admStatPlays').textContent = totalPlays.toLocaleString();
+                const totalLikes = this.data.songs.reduce((a, b) => a + b.likes, 0);
+                document.getElementById('admStatLikes').textContent = totalLikes.toLocaleString();
+                const totalDownloads = this.data.songs.reduce((a, b) => a + b.downloads, 0);
+                document.getElementById('admStatDownloads').textContent = totalDownloads.toLocaleString();
+
+                // Top Songs Table
+                const sorted = [...this.data.songs].sort((a,b) => b.plays - a.plays);
+                document.getElementById('adminTopSongsTableBody').innerHTML = sorted.map(s => `
+                    <tr class="border-b border-dark-border/40 hover:bg-dark-hover">
+                        <td class="py-2.5 font-bold text-white flex items-center gap-2">
+                            <img src="${s.coverUrl}" class="w-6 h-6 rounded object-cover">
+                            ${s.title}
+                        </td>
+                        <td class="py-2.5 text-brand-500">${s.plays.toLocaleString()}</td>
+                        <td class="py-2.5">${s.likes}</td>
+                        <td class="py-2.5">${s.downloads}</td>
+                    </tr>
+                `).join('');
+
+                // Song Admin Table
+                document.getElementById('adminSongListTable').innerHTML = this.data.songs.map(s => `
+                    <tr>
+                        <td class="p-3 font-bold text-white flex items-center gap-2">
+                            <img src="${s.coverUrl}" class="w-8 h-8 rounded object-cover">
+                            ${s.title}
+                        </td>
+                        <td class="p-3 text-gray-400">${s.genre}</td>
+                        <td class="p-3 text-gray-400">${s.type}</td>
+                        <td class="p-3 text-brand-500">${s.plays}</td>
+                        <td class="p-3">${s.downloadable ? '<span class="text-green-400">Yes</span>' : '<span class="text-red-400">No</span>'}</td>
+                        <td class="p-3 text-right">
+                            <button onclick="app.deleteSong('${s.id}')" class="p-1 text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            // --- UPLOAD HANDLER ---
+            openUploadModal() {
+                document.getElementById('uploadSongModal').classList.remove('hidden');
+            }
+
+            closeUploadModal() {
+                document.getElementById('uploadSongModal').classList.add('hidden');
+            }
+
+            handleFileSelectNotice(input) {
+                if (input.files && input.files[0]) {
+                    const notice = document.getElementById('fileSelectedName');
+                    notice.textContent = `Selected: ${input.files[0].name}`;
+                    notice.classList.remove('hidden');
+                }
+            }
+
+            async handleUploadSong(e) {
+                e.preventDefault();
+                const fileInput = document.getElementById('audioFileInput');
+                let audioUrl = "https://actions.google.com/sounds/v1/science_fiction/alien_beam.ogg";
+
+                if (fileInput.files && fileInput.files[0]) {
+                    audioUrl = await AudioStorageService.uploadAudioBlob(fileInput.files[0]);
+                }
+
+                const newSong = {
+                    id: 'song-' + Date.now(),
+                    title: document.getElementById('upTitle').value,
+                    type: document.getElementById('upType').value,
+                    genre: document.getElementById('upGenre').value,
+                    releaseDate: new Date().toISOString().split('T')[0],
+                    coverUrl: document.getElementById('upCoverUrl').value || "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=600&q=80",
+                    audioUrl: audioUrl,
+                    duration: "3:45",
+                    plays: 0,
+                    likes: 0,
+                    downloads: 0,
+                    featured: false,
+                    downloadable: document.getElementById('upDownloadable').checked,
+                    description: "Uploaded via DJ Antho Control Suite."
+                };
+
+                this.data.songs.unshift(newSong);
+                this.db.save(this.data);
+                this.closeUploadModal();
+                this.renderAllViews();
+                this.showToast("Track uploaded & published!");
+            }
+
+            deleteSong(songId) {
+                this.data.songs = this.data.songs.filter(s => s.id !== songId);
+                this.db.save(this.data);
+                this.renderAllViews();
+                this.showToast("Track deleted");
+            }
+
+            saveProfileSettings(e) {
+                e.preventDefault();
+                this.data.artist.name = document.getElementById('setArtistName').value;
+                this.data.artist.tagline = document.getElementById('setArtistTagline').value;
+                this.data.artist.bio = document.getElementById('setArtistBio').value;
+                this.data.artist.location = document.getElementById('setArtistLocation').value;
+                this.data.artist.genres = document.getElementById('setArtistGenres').value;
+                this.data.artist.profileImage = document.getElementById('setArtistPhoto').value;
+
+                this.db.save(this.data);
+                this.renderAbout();
+                this.showToast("Artist Profile Updated Live!");
+            }
+
+            // --- DRAWERS & COMMAND PALETTE ---
+            toggleFavoritesDrawer() {
+                const drawer = document.getElementById('favoritesDrawer');
+                drawer.classList.toggle('translate-x-full');
+            }
+
+            renderFavoritesDrawer() {
+                const list = document.getElementById('favoritesList');
+                const favSongs = this.data.songs.filter(s => this.data.favorites.includes(s.id));
+                document.getElementById('favCountBadge').textContent = favSongs.length;
+                document.getElementById('favCountBadge').classList.toggle('hidden', favSongs.length === 0);
+
+                if (favSongs.length === 0) {
+                    list.innerHTML = `<p class="text-xs text-gray-500 text-center py-8">No favorite tracks saved yet.</p>`;
+                    return;
+                }
+
+                list.innerHTML = favSongs.map(s => `
+                    <div class="p-2 rounded-lg bg-dark-card border border-dark-border flex items-center justify-between">
+                        <div class="flex items-center gap-2 truncate cursor-pointer" onclick="app.playTrack('${s.id}')">
+                            <img src="${s.coverUrl}" class="w-8 h-8 rounded object-cover">
+                            <div class="truncate">
+                                <h5 class="text-xs font-bold text-white truncate">${s.title}</h5>
+                                <span class="text-[10px] text-gray-400">${s.duration}</span>
+                            </div>
+                        </div>
+                        <button onclick="app.toggleFavorite('${s.id}')" class="text-xs text-brand-500 p-1"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                `).join('');
+            }
+
+            toggleQueueDrawer() {
+                document.getElementById('queueDrawer').classList.toggle('translate-x-full');
+            }
+
+            addToQueue(songId) {
+                const song = this.data.songs.find(s => s.id === songId);
+                if (song) {
+                    this.queue.push(song);
+                    this.renderQueue();
+                    this.showToast(`Added "${song.title}" to queue`);
+                }
+            }
+
+            renderQueue() {
+                const qList = document.getElementById('queueList');
+                if (this.queue.length === 0) {
+                    qList.innerHTML = `<p class="text-xs text-gray-500 text-center py-8">Queue is empty.</p>`;
+                    return;
+                }
+                qList.innerHTML = this.queue.map((s, idx) => `
+                    <div class="p-2 rounded-lg bg-dark-card border border-dark-border flex items-center justify-between">
+                        <div class="flex items-center gap-2 truncate">
+                            <span class="text-xs font-mono text-gray-500">${idx + 1}</span>
+                            <img src="${s.coverUrl}" class="w-8 h-8 rounded object-cover">
+                            <h5 class="text-xs font-bold text-white truncate">${s.title}</h5>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            clearQueue() {
+                this.queue = [];
+                this.renderQueue();
+                this.showToast("Queue cleared");
+            }
+
+            toggleCmdPalette() {
+                const modal = document.getElementById('cmdPaletteModal');
+                modal.classList.toggle('hidden');
+                if (!modal.classList.contains('hidden')) {
+                    document.getElementById('cmdPaletteInput').focus();
+                    this.handleCmdPaletteInput('');
+                }
+            }
+
+            handleCmdPaletteInput(val) {
+                const query = val.toLowerCase();
+                const results = document.getElementById('cmdPaletteResults');
+                
+                const commands = [
+                    { title: "Go to Home", action: () => this.navigateTo('home'), icon: "fa-house" },
+                    { title: "Go to Music Library", action: () => this.navigateTo('music'), icon: "fa-music" },
+                    { title: "Go to Tour Dates", action: () => this.navigateTo('events'), icon: "fa-calendar" },
+                    { title: "Play Latest Track", action: () => this.playLatestTrack(), icon: "fa-play" },
+                    { title: "Toggle Favorites Drawer", action: () => this.toggleFavoritesDrawer(), icon: "fa-heart" }
+                ];
+
+                const filtered = commands.filter(c => c.title.toLowerCase().includes(query));
+                results.innerHTML = filtered.map(c => `
+                    <div onclick="app.executeCmd(${commands.indexOf(c)})" class="p-3 rounded-lg hover:bg-dark-hover flex items-center justify-between cursor-pointer text-xs text-gray-200">
+                        <span class="flex items-center gap-3"><i class="fa-solid ${c.icon} text-brand-500"></i> ${c.title}</span>
+                        <span class="text-[10px] text-gray-500 font-mono">Jump</span>
+                    </div>
+                `).join('');
+            }
+
+            executeCmd(index) {
+                const commands = [
+                    () => this.navigateTo('home'),
+                    () => this.navigateTo('music'),
+                    () => this.navigateTo('events'),
+                    () => this.playLatestTrack(),
+                    () => this.toggleFavoritesDrawer()
+                ];
+                if (commands[index]) commands[index]();
+                this.toggleCmdPalette();
+            }
+
+            setupKeyboardShortcuts() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+                    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                        e.preventDefault();
+                        this.toggleCmdPalette();
+                    } else if (e.code === 'Space') {
+                        e.preventDefault();
+                        this.togglePlayPause();
+                    } else if (e.key === 'm' || e.key === 'M') {
+                        this.toggleMute();
+                    } else if (e.key === 's' || e.key === 'S') {
+                        this.toggleShuffle();
+                    } else if (e.key === 'r' || e.key === 'R') {
+                        this.toggleRepeat();
+                    }
+                });
+            }
+
+            // --- UTILITIES & TOASTS ---
+            playLatestTrack() {
+                if (this.data.songs.length > 0) {
+                    this.playTrack(this.data.songs[0].id);
+                }
+            }
+
+            showToast(msg) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'glass-panel px-4 py-3 rounded-xl border border-brand-500/40 text-white text-xs shadow-xl flex items-center gap-2 animate-bounce';
+                toast.innerHTML = `<i class="fa-solid fa-circle-info text-brand-500"></i> ${msg}`;
+                container.appendChild(toast);
+                setTimeout(() => toast.remove(), 3000);
+            }
+
+            formatTime(seconds) {
+                const min = Math.floor(seconds / 60);
+                const sec = Math.floor(seconds % 60);
+                return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+            }
+
+            toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+                this.showToast("Theme Toggled");
+            }
+        }
+
+        // Initialize Global Application on Window Load
+        let app;
+        window.onload = function() {
+            app = new DJAnthoApp();
+        };
+    </script>
+</body>
+</html>
